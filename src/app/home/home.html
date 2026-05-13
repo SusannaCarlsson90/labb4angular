@@ -1,19 +1,28 @@
-<p>Git repositories</p>
+<div class="container">
+  <h1>Ramschema</h1>
+  @if (error()) {
+    <p style="color: red;">{{ error() }}</p>
+  }
 
-@if(error()) {
-  <div class="error">
-    <p>{{error()}}</p>
-  </div>
+  <table>
+    <thead>
+      <tr>
+        <th>Kurskod</th>
+        <th>Kursnamn</th>
+        <th>Progression</th>
+        <th>Syllabus</th>
+      </tr>
+    </thead>
+  
+  <tbody>
+@for (repo of repositories(); track repo.code) {
+  <tr>
+  <td>{{repo.code.toUpperCase()}}</td>
+  <td>{{repo.coursename}}</td>
+  <td>{{repo.progression}}</td>
+  <td><a [href]="repo.syllabus" target="_blank">Webblänk</a></td>
+</tr>
 }
-
-@for(repo of repositories(); track repo.code) {
-  <article>
-    <h3>Namn:{{repo.name}}</h3>
-    <p>Beskrivning:{{repo.description}}</p>
-    <p>Privat: {{repo.private ? "Ja" : "Nej"}}</p>
-    <p>Skapad: {{repo.created_at | date: "yyyy-MM-dd"}}</p>
-    <p>Senast uppdaterad: {{repo.pushed_at | date: "yyyy-MM-dd"}}</p>
-    <p>Primärt programmeringsspråk: {{repo.language}}</p>
-    <p><a [href]="repo.html_url" target="_blank">Visa på GitHub</a></p>
-  </article>
-}
+  </tbody>
+</table>
+</div>
