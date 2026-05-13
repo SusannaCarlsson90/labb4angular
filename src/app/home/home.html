@@ -1,0 +1,19 @@
+<p>Git repositories</p>
+
+@if(error()) {
+  <div class="error">
+    <p>{{error()}}</p>
+  </div>
+}
+
+@for(repo of repositories(); track repo.id) {
+  <article>
+    <h3>Namn:{{repo.name}}</h3>
+    <p>Beskrivning:{{repo.description}}</p>
+    <p>Privat: {{repo.private ? "Ja" : "Nej"}}</p>
+    <p>Skapad: {{repo.created_at | date: "yyyy-MM-dd"}}</p>
+    <p>Senast uppdaterad: {{repo.pushed_at | date: "yyyy-MM-dd"}}</p>
+    <p>Primärt programmeringsspråk: {{repo.language}}</p>
+    <p><a [href]="repo.html_url" target="_blank">Visa på GitHub</a></p>
+  </article>
+}
