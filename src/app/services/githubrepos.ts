@@ -7,13 +7,13 @@ import { firstValueFrom } from 'rxjs';
   providedIn: 'root',
 })
 export class GithubreposService {
-  private url: string = "https://api.github.com/users/SusannaCarlsson90/repos";
+  private url: string = "https://webbutveckling.miun.se/files/ramschema.json";
 
   http = inject(HttpClient);
 // Ladda repos
-async loadRepos(): Promise<Repository[]> {
-const repositories = this.http.get<Repository[]>(this.url);
-return await firstValueFrom(repositories);
+async getCourses(): Promise<Repository[]> {
+const courses = this.http.get<Repository[]>(this.url);
+return await firstValueFrom(courses);
 }
   }
 

@@ -6,7 +6,7 @@
   </div>
 }
 
-@for(repo of repositories(); track repo.id) {
+@for(repo of repositories(); track repo.code) {
   <article>
     <h3>Namn:{{repo.name}}</h3>
     <p>Beskrivning:{{repo.description}}</p>
