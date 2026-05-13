@@ -29,13 +29,19 @@ console.table(this.repositories());
       this.error.set("Kunde inte ladda data, försök igen senare");
     }
   }
-  //Metod för att sortera data
-sortData(key: keyof Repository) {  //För varje key i mitt interface:
-  const sorted = [...this.repositories()].sort((a, b) => //Skapar en kopia av listan för att kunna sortera utan att störa originalet och sorterar sedan från a-b
-  {
-    return a[key].toLowerCase() > b[key].toLowerCase() ? 1 : -1; //Jämför värdet a och b om A är före B flytta ner, annars flytta upp
+// En funktion som körs när vi klickar på en rubrik för att sortera listan
+sortData(key: keyof Repository) {
+  const sorted = [...this.repositories()].sort((a, b) => { //Sortera i bokstavsordning
+  
+    return String(a[key]).localeCompare(String(b[key])); //Jämför a mot b
   });
-  this.repositories.set(sorted); //Uppdaterar signalen så att ändringen syns på skärmen
+
+  // Om listan redan är sorterad stigande, vänd på den så den blir fallande
+  if (JSON.stringify(this.repositories()) === JSON.stringify(sorted)) {
+    sorted.reverse();
+  }
+
+  this.repositories.set(sorted);
 }
 }
 
