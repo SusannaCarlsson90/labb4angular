@@ -1,4 +1,4 @@
-import { Component, inject, signal } from '@angular/core';
+import { Component, inject, signal, OnInit } from '@angular/core';
 import { Repository } from '../models/repository';
 import { GithubreposService } from '../services/githubrepos';
 import { CommonModule, DatePipe } from '@angular/common'; // Importera DatePipe
@@ -9,7 +9,7 @@ import { CommonModule, DatePipe } from '@angular/common'; // Importera DatePipe
   templateUrl: './home.html',
   styleUrl: './home.css',
 })
-export class HomeComponent {
+export class HomeComponent implements OnInit {
   repositories = signal<Repository[]>([]);
   error = signal<string | null>(null);
   
@@ -21,7 +21,7 @@ export class HomeComponent {
 
   async loadRepositories() {
     try {
-const response = await this.githubReposService.loadRepos();
+const response = await this.githubReposService.getCourses();
 this.repositories.set(response);
 console.table(this.repositories());
     } catch(error) {
