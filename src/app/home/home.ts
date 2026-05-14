@@ -1,4 +1,4 @@
-import { Component, inject, signal, OnInit } from '@angular/core';
+import { Component, inject, signal, OnInit, computed } from '@angular/core';
 import { Repository } from '../models/repository';
 import { GithubreposService } from '../services/githubrepos';
 import { CommonModule} from '@angular/common'; 
@@ -12,6 +12,18 @@ import { CommonModule} from '@angular/common';
 export class HomeComponent implements OnInit {
   repositories = signal<Repository[]>([]);
   error = signal<string | null>(null);
+  searchTerm = signal<string>('')// En behållare som sparar texten användaren skriver i sökrutan
+
+  filteredRepositories = computed(() => {
+    const term = this.searchTerm().toLowerCase(); // Hämtar sökordet
+    const list = this.repositories(); // Hämtar alla kurser 
+
+    // Returnerar bara de kurser som matchar sökordet i kod eller namn
+    return list.filter(repo =>
+      repo.code.toLowerCase().includes(term) || 
+      repo.coursename.toLowerCase().includes(term)
+    );
+  });
   
   githubReposService = inject(GithubreposService);
   ngOnInit() {
@@ -29,6 +41,13 @@ console.table(this.repositories());
       this.error.set("Kunde inte ladda data, försök igen senare");
     }
   }
+//Metod för sökning
+  handleSearch(event: Event) {
+    const input = event.target as HTMLInputElement; //Meddelar att det är en textruta
+    this.searchTerm.set(input.value.toLowerCase()); //Sparar det som skrivs och gör om till små bokstäver
+  }
+
+
 // En funktion som körs när vi klickar på en rubrik för att sortera listan
 sortData(key: keyof Repository) {
   const sorted = [...this.repositories()].sort((a, b) => { //Sortera i bokstavsordning
