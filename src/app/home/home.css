@@ -51,17 +51,41 @@ tr:hover {
 
 /* Media query för mobiler */
 @media (max-width: 600px) {
-  h1 {
-    font-size: 1.5rem; /* Gör rubriken lite mindre */
-    text-align: center;
+  /* Dölj den vanliga tabellrubriken */
+  thead {
+    display: none;
   }
 
-  input {
-    font-size: 14px; /* Lite mindre text i sökfältet */
+  /* Gör varje rad till ett eget "kort" */
+  tr {
+    display: block;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 10px;
+    background-color: #fff;
   }
 
-  th, td {
-    padding: 8px; 
-    font-size: 13px;
+  /* Gör varje cell till en rad i kortet */
+  td {
+    display: block;
+    text-align: right; /* Texten till höger */
+    padding: 8px 5px;
+    border-bottom: 1px solid #eee;
+    position: relative;
+  }
+
+  /* Lägg till etiketter före datan */
+  td::before {
+    content: attr(data-label); 
+    position: absolute;
+    left: 10px;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 12px;
+  }
+
+  td:last-child {
+    border-bottom: none;
   }
 }

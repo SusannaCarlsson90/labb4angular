@@ -17,14 +17,13 @@
     </thead>
   
   <tbody>
-@for (repo of filteredRepositories(); track repo.code) {
-  <tr>
-  <td>{{repo.code.toUpperCase()}}</td>
-  <td>{{repo.coursename}}</td>
-  <td>{{repo.progression}}</td>
-  <td><a [href]="repo.syllabus" target="_blank">Webblänk</a></td>
-</tr>
-}
+    <tr *ngFor="let repo of filteredRepositories()">
+      <td data-label="Kod">{{repo.code.toUpperCase()}}</td>
+      <td data-label="Namn">{{repo.coursename}}</td>
+      <td data-label="Nivå">{{repo.progression}}</td>
+      <td data-label="Länk"><a [href]="repo.syllabus" target="_blank">Webblänk</a></td>
+    </tr>
+
   </tbody>
 </table>
 </div>
