@@ -61,7 +61,7 @@ tr:hover {
   }
 
   th, td {
-    padding: 8px; /* Mindre luft i cellerna för att spara plats */
+    padding: 8px; 
     font-size: 13px;
   }
 }
