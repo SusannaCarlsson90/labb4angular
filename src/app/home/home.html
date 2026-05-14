@@ -4,6 +4,7 @@
     <p style="color: red;">{{ error() }}</p>
   }
 
+  <input type="text" (input)="handleSearch($event)" placeholder="Sök kurs här">
   <table>
     <thead>
       <tr>
@@ -15,7 +16,7 @@
     </thead>
   
   <tbody>
-@for (repo of repositories(); track repo.code) {
+@for (repo of filteredRepositories(); track repo.code) {
   <tr>
   <td>{{repo.code.toUpperCase()}}</td>
   <td>{{repo.coursename}}</td>
