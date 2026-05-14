@@ -1,0 +1,43 @@
+.container {
+  max-width: 1140px;
+  margin: 0 auto;
+}
+
+input {
+  width: 100%;          /* Gör rutan lika bred som tabellen */
+  padding: 12px 15px;  
+  margin: 20px 0;      
+  border: 1px solid #ccc;
+  border-radius: 4px;   
+  font-size: 16px;      /* Gör texten lättläst */
+  box-sizing: border-box; 
+}
+table {
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: left;
+  border-collapse: collapse;
+}
+
+h1 {
+  text-align: center;
+}
+
+th, td {
+  padding: 12px;
+  border-bottom: 1px solid #ddd; /* En tunn linje mellan varje rad */
+}
+
+th {
+  background-color: #f4f4f4; 
+  color: #333;
+}
+
+tr:nth-child(even) {
+  background-color: #fafafa; /* Varannan rad blir svagt grå */
+}
+
+tr:hover {
+  background-color: #f0f0f0; 
+}
